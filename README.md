@@ -1,4 +1,4 @@
-# demo-java25-maven-spring4
+# Spring Boot 4 + Kotlin + Maven Demo
 
 Projeto de demonstração utilizando Spring Boot 4 (snapshot), Kotlin e Maven, com foco em explorar recursos modernos do ecossistema Java (Java 24+/25 EA), programação reativa com WebFlux e integração com banco de dados PostgreSQL e Testcontainers para testes.
 
@@ -34,6 +34,31 @@ A aplicação sobe na porta padrão 8080 (a menos que alterado em `src/main/reso
 
 Os testes utilizam JUnit 5 e Testcontainers. Caso tenha Docker em execução, os containers necessários serão iniciados automaticamente durante os testes.
 
+## Docker Compose (PostgreSQL)
+Para iniciar rapidamente as dependências do projeto (ex.: banco de dados PostgreSQL), utilize o arquivo `docker-compose.yml` na raiz do repositório.
+
+Comandos básicos:
+- Subir o Postgres em background: `docker compose up -d`
+- Ver logs: `docker compose logs -f postgres`
+- Parar os serviços: `docker compose down`
+- Remover volumes (dados): `docker compose down -v`
+
+Credenciais padrão (configuradas no compose):
+- Host: `localhost`
+- Porta: `5432`
+- Banco: `demo`
+- Usuário: `demo`
+- Senha: `demo`
+
+Exemplo de configuração do Spring para usar este Postgres (em `src/main/resources/application.properties`):
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/demo
+spring.datasource.username=demo
+spring.datasource.password=demo
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+```
+
 ## Estrutura do projeto
 - `src/main/kotlin` — código-fonte da aplicação
 - `src/test/kotlin` — testes automatizados (incluindo configuração do Testcontainers)
@@ -42,7 +67,7 @@ Os testes utilizam JUnit 5 e Testcontainers. Caso tenha Docker em execução, os
 
 ## Configuração de banco de dados
 Por padrão, o PostgreSQL é utilizado em tempo de execução (dependência `runtime`). Para desenvolvimento local, você pode:
-- Usar um PostgreSQL local e configurar credenciais em `application.properties`;
+- Usar um PostgreSQL local (ex.: via Docker Compose acima) e configurar as credenciais em `application.properties`;
 - Ou focar em testes com Testcontainers sem necessidade de instalação manual, apenas com Docker ativo.
 
 ## Observações
