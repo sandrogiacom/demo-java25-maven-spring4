@@ -59,7 +59,7 @@ RUN set -eux; \
         /workspace/app.jar); \
     echo "Detected modules: ${MODULES}"; \
     jlink \
-      --add-modules "${MODULES}" \
+      --add-modules "${MODULES},java.desktop,java.management" \
       --no-man-pages \
       --no-header-files \
       --strip-debug \
