@@ -82,7 +82,7 @@ ENV TZ=UTC \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     LC_ALL=C.UTF-8 \
-    JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75 -XX:InitialRAMPercentage=50 -XX:+AlwaysActAsServer -XX:+UseZGC -XX:+ZGenerational -XX:+ExitOnOutOfMemoryError" \
+    JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75 -XX:InitialRAMPercentage=50 -XX:+UseZGC -XX:+ZGenerational -XX:+ExitOnOutOfMemoryError" \
     SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_HOME=/opt/jre \
     PATH=/opt/jre/bin:$PATH
