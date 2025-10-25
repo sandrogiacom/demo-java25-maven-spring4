@@ -63,7 +63,7 @@ RUN set -eux; \
       --no-man-pages \
       --no-header-files \
       --strip-debug \
-      --compress=zip \
+      --compress=2 \
       --output /opt/jre;
 
 # Sanity check
