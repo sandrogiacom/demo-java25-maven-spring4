@@ -1,0 +1,46 @@
+# Exclude files and directories not needed in the Docker build context
+# VCS
+.git
+.gitignore
+
+# IDEs
+.idea
+.vscode
+*.iml
+
+# Build outputs
+build/
+out/
+classes/
+*.class
+*.log
+*.tmp
+
+# Maven/Gradle
+**/target/
+target/
+.settings/
+.project
+.classpath
+
+# Node/npm (if any frontend present)
+node_modules/
+**/node_modules/
+
+# OS/Editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Docker
+Dockerfile.*
+.dockerignore
+
+# Test artifacts
+**/surefire-reports/
+**/failsafe-reports/
+
+# Local env
+.env
+*.local
