@@ -100,17 +100,6 @@ USER app
 
 EXPOSE 8080
 
-# HEALTHCHECK (optional): if actuator is enabled at default port
-HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:8080/actuator/health | grep 'UP' || exit 1
-
-# Labels for provenance and slimming tools like Docker Slim
-LABEL org.opencontainers.image.title="demo-java25" \
-      org.opencontainers.image.description="Spring Boot app on Amazon Corretto 25 with jlink-minimized runtime" \
-      org.opencontainers.image.source="https://github.com/sandrogiacom/demo-java25-maven-spring4" \
-      org.opencontainers.image.vendor="Giacom" \
-      org.opencontainers.image.licenses="Apache-2.0"
-
 # JVM flags tuned for containers; enable CDS/AppCDS is possible in advanced builds
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
 
