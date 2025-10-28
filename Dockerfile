@@ -6,8 +6,7 @@
 FROM amazoncorretto:25-alpine AS build-base
 
 # Install minimal tooling for Maven Wrapper and debugging
-RUN apk add --no-cache bash curl tar gzip unzip findutils coreutils binutils
-
+RUN apk add --no-cache bash binutils coreutils curl findutils gzip tar unzip
 WORKDIR /workspace
 
 # Leverage Docker BuildKit caches for Maven repository
@@ -75,9 +74,8 @@ RUN /opt/jre/bin/java -version
 FROM alpine:3.20 AS runtime
 
 # Add minimal runtime deps (certs, tzdata, and busybox wget for healthcheck)
-RUN apk add --no-cache ca-certificates tzdata busybox-extras && \
+RUN apk add --no-cache busybox-extras ca-certificates tzdata && \
     addgroup -S app && adduser -S -G app app
-
 ENV TZ=UTC \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
